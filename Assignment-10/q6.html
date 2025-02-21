@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q6</title>
+    <style>
+        #gallery {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+        #gallery img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.3s, z-index 0.3s;
+        }
+        #img1 { top: 0; left: 0; z-index: 1; }
+        #img2 { top: 40px; left: 40px; z-index: 2; }
+        #img3 { top: 80px; left: 80px; z-index: 3; }
+    </style>
+</head>
+<body>
+    <h2>Layered Image Gallery</h2>
+    <div id="gallery">
+        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" id="img1" style="z-index: 1;" onclick="bringToFront(this)">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/036/324/708/small/ai-generated-picture-of-a-tiger-walking-in-the-forest-photo.jpg" id="img2" style="z-index: 2;" onclick="bringToFront(this)">
+        <img src="https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp" id="img3" style="z-index: 3;" onclick="bringToFront(this)">
+    </div>
+
+    <script>
+        function bringToFront(img) {
+            let maxZ = Math.max(...Array.from(document.querySelectorAll("#gallery img")).map(i => parseInt(i.style.zIndex || 0)));
+            img.style.zIndex = maxZ + 1; 
+        }
+    </script>
+</body>
+</html>

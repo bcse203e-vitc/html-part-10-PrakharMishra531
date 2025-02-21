@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q3</title>
+</head>
+<body>
+    <h1>Order your pizza</h1>
+    <h3>Select size</h3>
+    <label><input type="radio" name="size" value="Small"> Small</label><br>
+    <label><input type="radio" name="size" value="Medium"> Medium</label><br>
+    <label><input type="radio" name="size" value="Large"> Large</label><br>
+
+    <h3>Select Toppings:</h3>
+    <label><input type="checkbox" name="topping" value="Cheese"> Cheese</label><br>
+    <label><input type="checkbox" name="topping" value="Pepperoni"> Pepperoni</label><br>
+    <label><input type="checkbox" name="topping" value="Mushrooms"> Mushrooms</label><br>
+    <label><input type="checkbox" name="topping" value="Olives"> Olives</label><br>
+
+    <button onclick="submitOrder()">Submit Order</button>
+    <h3>Order Summary:</h3>
+    <p id="orderSummary"></p>
+    <script>
+        function submitOrder() {
+            let size = document.querySelector('input[name="size"]:checked');
+            let toppings = document.querySelectorAll('input[name="topping"]:checked');
+            let toppingsList = Array.from(toppings).map(topping => topping.value);
+            if (!size) {
+                document.getElementById("orderSummary").textContent = "Please select a pizza size.";
+                return;
+            }
+            let summary = `You ordered a ${size.value} pizza with `;
+            summary += toppingsList.length > 0 ? toppingsList.join(", ") : "no toppings.";
+            document.getElementById("orderSummary").textContent = summary;
+        }
+
+    </script>
+</body>
+</html>
